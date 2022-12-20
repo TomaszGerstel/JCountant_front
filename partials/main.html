@@ -1,0 +1,55 @@
+<meta charset="UTF-8">
+</meta>
+
+<div class="content">
+	<h2>Current balance</h2>
+
+	<div class="block" ng-controller="BalanceController as balanceCtrl">
+		<ul>
+			<li>{{"account balance: " + balanceCtrl.balance.balance}}</li>
+			<li>{{"gross income (without vat): " + balanceCtrl.balance.grossIncome}}</li>
+			<li>{{"net balance: " + balanceCtrl.balance.netBalance}}</li>
+			<li>{{"costs: " + balanceCtrl.balance.costs}}</li>
+			<li>{{"other costs: " + balanceCtrl.balance.otherCosts}}</li>
+			<li>{{"vat due: " + balanceCtrl.balance.vatDue}}</li>
+			<li>{{"vat paid: " + balanceCtrl.balance.vatPaid}}</li>
+			<li>{{"vat remaining (due minus paid): " + balanceCtrl.balance.vatBalance}}</li>
+			<hr>
+			<h3>Depending on the type of activity (tax settlement method):</h3>
+			<h4>Option 1 (for taxes settled on the flat tax basis):</h4>
+			<li>{{"flat tax due: " + balanceCtrl.balance.flatTaxDue}}</li>
+			<li>{{"flat tax balance: " + balanceCtrl.balance.flatTaxBalance}}</li>
+			<li>{{"profit due in flat case: " + balanceCtrl.balance.profitDueFlat}}</li>
+			<li>{{"profit remaining (flat case): " + balanceCtrl.balance.profitRemainingFlat}}</li>
+			<h4>Option 2 (for taxes settled on the basis of a lump-sum tax on gross income):</h4>			
+			<li>{{"lump-sum tax rate: " + balanceCtrl.balance.lumpTaxRate}}</li>
+			<li>{{"lump-sum tax due: " + balanceCtrl.balance.lumpSumTaxDue}}</li>			
+			<li>{{"lump-sum tax balance: " + balanceCtrl.balance.lumpSumTaxBalance}}</li>			
+			<li>{{"profit due in lump-sum case: " + balanceCtrl.balance.profitDueLump}}</li>					
+			<li>{{"profit remaining (lump-sum case): " + balanceCtrl.balance.profitRemainingLump}}</li>
+			<hr>	
+			<li>{{"profit paid: " + balanceCtrl.balance.profitPaid}}</li>
+			<li>{{"tax paid: " + balanceCtrl.balance.taxPaid}}</li>				
+		</ul>	
+	</div>
+
+	<h2>Latest transfers</h2>
+
+	<div class="info_blocks" ng-controller="TransferController as transferCtrl">
+	
+		<div class="block" ng-repeat="transfer in transferCtrl.latestTransfers">
+			<ul>
+				<li>{{"transfer type: " + transfer.transferType}}</li>
+				<li>{{"transfer date: " + transfer.date}}</li>
+				<li>{{"transfer amount: " + transfer.amount}}</li>
+				<li>{{"from: " + transfer.from_}}</li>
+				<li>{{"to: " + transfer.to_}}</li>
+			</ul>
+			
+		
+		</div>
+	
+	
+	</div>
+	<p  ng-controller="MainController as mainCtrl">{{mainCtrl.menuClick('main')}}</p>
+</div>

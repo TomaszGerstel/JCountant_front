@@ -1,0 +1,26 @@
+<meta charset="UTF-8"></meta>
+<div class="content">
+	<h2>Add new Receipt / Invoice</h2>
+	<h3>{{receiptCtrl.receiptMessage}}</h3>
+	<h3 ng-show="!authenticated">Log in to add receipt</h3>
+	<div class="my_form" ng-show="authenticated">
+		<form class="form_inputs">
+			<input type="date" ng-model="receiptCtrl.receipt.date"
+				required="required" placeholder="date" title="put date"><br> 
+				<input type="number" ng-model="receiptCtrl.receipt.amount"
+				required="required" placeholder="amount"><br>
+				<input type="number" ng-model="receiptCtrl.receipt.netAmount" placeholder="net amount (optional)"><br>				
+				<input type="number" ng-model="receiptCtrl.receipt.vatValue" placeholder="vat value (optional)"><br>
+				<input type="number" ng-model="receiptCtrl.receipt.vatPercentage" placeholder="vat percentage (optional)"><br>
+				<input type="text" ng-model="receiptCtrl.receipt.client"
+				required="required" placeholder="client"><br>
+				<input type="textr" ng-model="receiptCtrl.receipt.worker" required="required"
+				placeholder="worker"><br>
+				<input type="text" ng-model="receiptCtrl.receipt.description" required="required"
+				placeholder="description"><br>
+			<button type="submit" class="my_button" ng-click="receiptCtrl.addReceipt()">Add</button>
+			
+		</form>
+	</div>
+	<p  ng-controller="MainController as mainCtrl">{{mainCtrl.menuClick('receipt')}}</p>
+</div>

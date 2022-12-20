@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html data-ng-app="app">
+<head>
+<meta charset="UTF-8"></meta>
+<title>My Lawasz</title>
+<link rel="stylesheet" href="styles.css">
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+<link rel="icon" type="image/png" ng-href="images/favicon.png" />
+<link rel="shortcut icon" type="image/png" ng-href="images/favicon.png" />
+</head>
+
+<body>
+	<main>
+	<!-- <header ng-controller="LoginController as loginCtrl"> -->
+	<header ng-controller="MainController as mainCtrl">
+        <nav>
+          <ul class="bar top_bar">
+			<!-- <li class="logo"><a href="#!/:window.location.reload(true)">
+            	<img class="logo_image" src="images/MyLawasz.jpg"/></a></li>             -->
+        	<a href="#!receipt" ng-click="mainCtrl.menuClick('info')" id="info">Info</a>
+           <a href="#!login" ng-show="!authenticated" ng-click="mainCtrl.menuClick('login')" id="login">LOGIN</a>				
+					<a href="#!login" ng-show="authenticated" ng-click="loginCtrl.logout()" ng-controller="LoginController as loginCtrl">LOGOUT</a>
+          </ul>
+        </nav>
+
+        <nav>
+          <ul class="bar menu_bar">
+			<a href="#!main" ng-click="mainCtrl.menuClick('main')" id="main">Home</a>
+			<a href="#!receipt" ng-click="mainCtrl.menuClick('receipt')" id="receipt">New Receipt</a>
+            <a href="#!transfer" ng-click="mainCtrl.menuClick('transfer')" id="transfer">New Transfer</a>    
+            <a href="#!receipt" ng-click="mainCtrl.menuClick('balance')" id="balance">Balance</a>
+            <a href="#!/" ng-click="mainCtrl.menuClick('search')" id="search">Search...</a>
+           
+          </ul>		  
+        </nav>
+		<span ng-show="authenticated" class="login_info">Logged in user: {{currentUserName}}</span>
+      </header>
+		
+	<div ng-view></div>
+
+	<div class="footer">
+		&copy TG 2022
+	</div>
+
+	<script type="text/javascript"
+		src="bower_components/angular/angular.js"></script>
+	<script type="text/javascript"
+		src="bower_components/angular-route/angular-route.js"></script>
+	<script type="text/javascript"
+		src="bower_components/angular-resource/angular-resource.js"></script>
+		<script type="text/javascript"
+		src="bower_components/angular-cookies/angular-cookies.js"></script>
+	<script type="text/javascript" src="js/app.js"></script>
+	<script type="text/javascript" src="js/service.js"></script>
+	<script type="text/javascript" src="js/controller.js"></script>
+	</main>
+
+</body>
+</html>

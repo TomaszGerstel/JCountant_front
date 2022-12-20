@@ -1,0 +1,21 @@
+<meta charset="UTF-8"></meta>
+	
+	<div class="content">
+		<h2>Register new user</h2>
+		<h3>{{registerCtrl.registerMessage}}</h3>
+		<h3 ng-show="authenticated">Log out first</h3>
+		<div class="my_form" ng-show="!authenticated">
+			<form class="form_inputs">
+				<input type="text" ng-model="registerCtrl.user.username"
+					required="required" placeholder="username"><br> <input
+					type="password" ng-model="registerCtrl.user.password"
+					required="required" placeholder="password"><br>
+					<input type="email" ng-model="registerCtrl.user.email"
+					required="required" placeholder="email"><br>
+					<input type="number" ng-model="registerCtrl.user.lumpSumTaxRate"
+					placeholder="lump-sum tax rate (optional)"><br>
+				<button type="submit" class="my_button" ng-click="registerCtrl.register()">Register</button>
+			</form>
+		</div>
+		<p  ng-controller="MainController as mainCtrl">{{mainCtrl.menuClick('login')}}</p>
+	</div>
