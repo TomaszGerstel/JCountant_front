@@ -30,11 +30,11 @@
 			<li>{{"profit paid: " + balanceCtrl.balance.profitPaid}}</li>
 			<li>{{"tax paid: " + balanceCtrl.balance.taxPaid}}</li>				
 		</ul>
-		<button class="my_button" ng-click="balanceCtrl.showBalanceForCurrentMonth">For current month</button>
-		<button class="my_button" ng-click="balanceCtrl.showBalanceForLastMonth">For last month</button>
-		from: <input type="date" ng-model="balanceCtrl.fromDate">
-		to: <input type="date" ng-model="balanceCtrl.toDate">
-		<button class="my_button" ng-click="balanceCtrl.showBalanceForDateRange">For current month</button>
+		<button class="my_button" ng-click="balanceCtrl.showBalanceForCurrentMonth()">For current month</button>
+		<button class="my_button" ng-click="balanceCtrl.showBalanceForLastMonth()">For last month</button>
+		from: <input type="date" ng-model="balanceCtrl.fromDate" name="from">
+		to: <input type="date" ng-model="balanceCtrl.toDate" name="to">
+		<button class="my_button" ng-click="balanceCtrl.showBalanceForDateRange()">For current month</button>
 	</div>
 
 	<h2>Latest transfers</h2>

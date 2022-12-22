@@ -55,8 +55,22 @@ angular.module('app')
 			vm.balanceInfo = "Balance for last month";
 		}
 		vm.showBalanceForDateRange = function() {
-			vm.balance = BalanceService.getBalanceForDeteRange(vm.fromDate, vm.toDate);
-			vm.balanceInfo = "Balance for date range (from: "+vm.fromDate+" to: "+vm.ToDate;
+			vm.fromDateForm = vm.formatDate(vm.fromDate);
+			vm.toDateForm = vm.formatDate(vm.toDate);
+			vm.balance = BalanceService.getBalanceForDateRange(vm.fromDateForm, vm.toDateForm);
+			vm.balanceInfo = "Balance for date range from: "+vm.fromDateForm+" to: "+vm.toDateForm;
+		}
+		vm.formatDate = function (date) {
+			vm.month = (date.getMonth() + 1).toString();
+			vm.day = date.getDate().toString();
+			vm.year = date.getFullYear().toString();
+		
+			if (vm.month.length < 2) 
+				vm.month = '0' + vm.month;
+			if (vm.day.length < 2) 
+				vm.day = '0' + vm.day;
+		
+			return [vm.year, vm.month, vm.day].join('-');
 		}
 	
 			
