@@ -22,7 +22,8 @@ angular.module('app')
 				vm.success = function() {					
 					vm.receipt = new Receipt();
 				});
-		}	
+		}
+
 		
 	})
 	.controller('TransferController', function(TransferService, Transfer, ReceiptService) {
@@ -39,8 +40,24 @@ angular.module('app')
 			} 
 	})
 	.controller('BalanceController', function(BalanceService) {
-		var vm = this;		
+		var vm = this;
+		vm.balanceInfo = "Current balance (for all time)";
+		vm.fromDate;
+		vm.toDate;
 		vm.balance = BalanceService.getCurrentBalance();
+		vm.currentBalance = vm.balance;
+		vm.showBalanceForCurrentMonth = function() {
+			vm.balance = BalanceService.getBalanceForCurrentMonth();
+			vm.balanceInfo = "Balance for current month";
+		}
+		vm.showBalanceForLastMonth = function() {
+			vm.balance = BalanceService.getBalanceForLastMonth();
+			vm.balanceInfo = "Balance for last month";
+		}
+		vm.showBalanceForDateRange = function() {
+			vm.balance = BalanceService.getBalanceForDeteRange(vm.fromDate, vm.toDate);
+			vm.balanceInfo = "Balance for date range (from: "+vm.fromDate+" to: "+vm.ToDate;
+		}
 	
 			
 	})

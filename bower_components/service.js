@@ -70,37 +70,15 @@ angular.module('app')
 	}; 
 
 	})
-	.service('BalanceService', function(Balance, CurrentMonthBalance, LastMonthBalance, BalanceForDateRange) {
+	.service('BalanceService', function(Balance) {
 		var vm = this;
 		vm.getCurrentBalance = function() {
 			return Balance.get({ }, function success(data) {
 				console.log('Generated balance: ' + JSON.stringify(data));			
 			}, function error(response) {
-				console.log(response.status); 
-			});
-		}
-		vm.getBalanceForCurrentMonth = function() {
-			return CurrentMonthBalance.get({ }, function success(data) {
-				console.log('Generated balance: ' + JSON.stringify(data));			
-			}, function error(response) {
 				console.log(response.status);
 			});
 		}
-		vm.getBalanceForLastMonth = function() {
-			return LastMonthBalance.get({ }, function success(data) {
-				console.log('Generated balance: ' + JSON.stringify(data));			
-			}, function error(response) {
-				console.log(response.status);
-			});
-		}
-		vm.getBalanceForDateRange = function(from, to) {
-			return BalanceForDateRange.get({from: from, to: to}, function success(data) {
-				console.log('Generated balance: ' + JSON.stringify(data));			
-			}, function error(response) {
-				console.log(response.status);
-			});
-		}
-		
 	})
 
 	.service('AuthenticationService', function($rootScope, $http, $resource, $cookies) {

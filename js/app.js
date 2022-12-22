@@ -65,6 +65,15 @@ angular.module('app', ['ngRoute', 'ngResource', 'ngCookies'])
 	.factory('Balance', function($resource) {
 		return $resource(API_ADDRESS+'/api/balance/current');
 	})
+	.factory('CurrentMonthBalance', function($resource) {
+		return $resource(API_ADDRESS+'/api/balance/to_current_month')
+	})
+	.factory('LastMonthBalance', function($resource) {
+		return $resource(API_ADDRESS+'/api/balance/to_last_month')
+	})
+	.factory('BalanceForDateRange', function($resource) {
+		return $resource(API_ADDRESS+'/api/balance/to_date_range')
+	})
 	.config(function($httpProvider) {
 		$httpProvider.defaults.headers.common["X-Requested-With"] = 'XMLHttpRequest';
 	})	
