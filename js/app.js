@@ -14,6 +14,11 @@ angular.module('app', ['ngRoute', 'ngResource', 'ngCookies'])
 				templateUrl: 'partials/receipt.html',
 				controller: 'ReceiptController',
 				controllerAs: 'receiptCtrl'
+			})
+			.when('/receipt_details/:id', {
+				templateUrl: 'partials/receipt_details.html',
+				controller: 'ReceiptDetailsController',
+				controllerAs: 'receiptCtrl'
 			})		
 			.when('/transfer', {
 			templateUrl: 'partials/transfer.html',
@@ -54,13 +59,13 @@ angular.module('app', ['ngRoute', 'ngResource', 'ngCookies'])
 		return $resource(API_ADDRESS+'/api/receipt/no_transfer_receipts');
 	})
 	.factory('Receipt', function($resource) {
-		return $resource(API_ADDRESS+'/api/receipt');
+		return $resource(API_ADDRESS+'/api/receipt/:id');
 	})
 	.factory('TransfersLatest', function($resource) {
 		return $resource(API_ADDRESS+'/api/transfer/recent');
 	})
 	.factory('Transfer', function($resource) {
-		return $resource(API_ADDRESS+'/api/transfer');
+		return $resource(API_ADDRESS+'/api/transfer/:id');
 	})
 	.factory('Balance', function($resource) {
 		return $resource(API_ADDRESS+'/api/balance/current');
@@ -79,6 +84,7 @@ angular.module('app', ['ngRoute', 'ngResource', 'ngCookies'])
 	})	
 	.run(['$rootScope', '$cookies', '$http',
     function ($rootScope, $cookies, $http) { 
+		// $rootScope.API_ADDRESS = 'http://127.0.0.1:8080';
 		if ($cookies.get('globals')) {
             $http.defaults.headers.common['Authorization'] = $cookies.get('globals');
 			$rootScope.currentUserName = $cookies.get('currentUserName');

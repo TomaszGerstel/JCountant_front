@@ -7,24 +7,34 @@ angular.module('app')
 		$rootScope.menuSelectedItem;
 		vm.menuClick = function (id) {		
 			if($rootScope.menuSelectedItem) $rootScope.menuSelectedItem.classList.remove('selected');
+			if(id) {
 			$rootScope.menuSelectedItem = document.getElementById(id);
-			$rootScope.menuSelectedItem.classList.add('selected');			
+			$rootScope.menuSelectedItem.classList.add('selected');
+			}			
 		}
 	})
 	
 	.controller('ReceiptController', function(ReceiptService, Receipt) {
 		var vm = this;
-		vm.receipt = new Receipt();	
+		vm.receipt = new Receipt();
+		vm.operationInfo = "";
+		vm.newReceiptLink = "";
 		vm.latestReceipts = ReceiptService.getLatestReceipts();
 		vm.addReceipt = function() {
 			// if (cause.description == null) return;
 			ReceiptService.addReceipt(vm.receipt,
-				vm.success = function() {					
+				vm.success = function(id) {					
 					vm.receipt = new Receipt();
+					vm.operationInfo = "Receipt added.";
+					vm.newReceiptLink = "#!receipt_details/"+id;
 				});
-		}
-
-		
+		}		
+	})
+	.controller('ReceiptDetailsController', function($routeParams, Receipt) {
+		var vm = this;
+		vm.receipt = new Receipt();
+		vm.receiptId = $routeParams.id;
+		vm.receipt = Receipt.get({id: vm.receiptId});
 	})
 	.controller('TransferController', function(TransferService, Transfer, ReceiptService) {
 		var vm = this;
@@ -46,6 +56,10 @@ angular.module('app')
 		vm.toDate;
 		vm.balance = BalanceService.getCurrentBalance();
 		vm.currentBalance = vm.balance;
+		vm.showCurrentBalance = function () {
+			vm.balance = BalanceService.getCurrentBalance();
+			vm.balanceInfo = "Current balance (for all time)";
+		}
 		vm.showBalanceForCurrentMonth = function() {
 			vm.balance = BalanceService.getBalanceForCurrentMonth();
 			vm.balanceInfo = "Balance for current month";
@@ -65,10 +79,8 @@ angular.module('app')
 			vm.day = date.getDate().toString();
 			vm.year = date.getFullYear().toString();
 		
-			if (vm.month.length < 2) 
-				vm.month = '0' + vm.month;
-			if (vm.day.length < 2) 
-				vm.day = '0' + vm.day;
+			if (vm.month.length < 2) vm.month = '0' + vm.month;
+			if (vm.day.length < 2) vm.day = '0' + vm.day;
 		
 			return [vm.year, vm.month, vm.day].join('-');
 		}

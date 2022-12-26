@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('app')
-	.service('ReceiptService', function(ReceiptsLatest, Receipt, ReceiptsWithoutTransfer) {
+	.service('ReceiptService', function(ReceiptsLatest, Receipt, ReceiptsWithoutTransfer, $location, $rootScope) {
 		var vm = this;
 		vm.receipt = new Receipt();		
 		vm.getLatestReceipts = function() {
@@ -13,12 +13,23 @@ angular.module('app')
 					console.log(response.status);
 				});
 		}
+		vm.getReceipt = function(id) {
+			return Receipt.get({id: id}, 
+				function success(data) {
+					console.log('data downoladed: ' + JSON.stringify(data));
+				},
+				function error(response) {
+					console.log(response.status);
+				});
+		}
 		vm.addReceipt = function(receipt, successCallback) {
 			vm.receipt = receipt;			
-			vm.receipt.$save(function(data) {
+			vm.receipt.$save(function(data, headers) {
 				console.log('New receipt added: ' + JSON.stringify(data));
-				successCallback();
-				vm.receipt = new Receipt();	
+				successCallback(data.id);
+				vm.receipt = new Receipt();
+				
+				// $location.path(headers('Location'));
 			},
 			function error(reason) {
 				console.log('adding receipt error: ' + reason);
