@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('app')
-	.service('ReceiptService', function(ReceiptsLatest, Receipt, ReceiptsWithoutTransfer, $location, $rootScope) {
+	.service('ReceiptService', function(ReceiptsLatest, Receipt, ReceiptsWithoutTransfer) {
 		var vm = this;
 		vm.receipt = new Receipt();		
 		vm.getLatestReceipts = function() {
@@ -13,23 +13,12 @@ angular.module('app')
 					console.log(response.status);
 				});
 		}
-		vm.getReceipt = function(id) {
-			return Receipt.get({id: id}, 
-				function success(data) {
-					console.log('data downoladed: ' + JSON.stringify(data));
-				},
-				function error(response) {
-					console.log(response.status);
-				});
-		}
 		vm.addReceipt = function(receipt, successCallback) {
 			vm.receipt = receipt;			
-			vm.receipt.$save(function(data, headers) {
+			vm.receipt.$save(function(data) {
 				console.log('New receipt added: ' + JSON.stringify(data));
-				successCallback(data.id);
-				vm.receipt = new Receipt();
-				
-				// $location.path(headers('Location'));
+				successCallback();
+				vm.receipt = new Receipt();	
 			},
 			function error(reason) {
 				console.log('adding receipt error: ' + reason);
@@ -81,37 +70,15 @@ angular.module('app')
 	}; 
 
 	})
-	.service('BalanceService', function(Balance, CurrentMonthBalance, LastMonthBalance, BalanceForDateRange) {
+	.service('BalanceService', function(Balance) {
 		var vm = this;
 		vm.getCurrentBalance = function() {
 			return Balance.get({ }, function success(data) {
 				console.log('Generated balance: ' + JSON.stringify(data));			
 			}, function error(response) {
-				console.log(response.status); 
-			});
-		}
-		vm.getBalanceForCurrentMonth = function() {
-			return CurrentMonthBalance.get({ }, function success(data) {
-				console.log('Generated balance: ' + JSON.stringify(data));			
-			}, function error(response) {
 				console.log(response.status);
 			});
 		}
-		vm.getBalanceForLastMonth = function() {
-			return LastMonthBalance.get({ }, function success(data) {
-				console.log('Generated balance: ' + JSON.stringify(data));			
-			}, function error(response) {
-				console.log(response.status);
-			});
-		}
-		vm.getBalanceForDateRange = function(from, to) {
-			return BalanceForDateRange.get({from: from, to: to}, function success(data) {
-				console.log('Generated balance: ' + JSON.stringify(data));			
-			}, function error(response) {
-				console.log(response.status);
-			});
-		}
-		
 	})
 
 	.service('AuthenticationService', function($rootScope, $http, $resource, $cookies) {

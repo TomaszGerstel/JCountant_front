@@ -2,10 +2,19 @@
 </meta>
 
 <div class="content">
-	<h2>Current balance</h2>
-
 	<div class="block" ng-controller="BalanceController as balanceCtrl">
+		<h2 ng-model="balanceCtrl.balanceInfo">{{balanceCtrl.balanceInfo}}</h2>
 		<ul>
+			<div class="balance_buttons">
+				<button class="my_button" ng-click="balanceCtrl.showBalanceForCurrentMonth()">For current month</button>
+				<button class="my_button" ng-click="balanceCtrl.showBalanceForLastMonth()">For last month</button>
+				<hr>
+				from: <input type="date" ng-model="balanceCtrl.fromDate" name="from"><br>
+				to: <input type="date" ng-model="balanceCtrl.toDate" name="to">
+				<button class="my_button" ng-click="balanceCtrl.showBalanceForDateRange()">For date range</button><hr>
+				<button class="my_button" ng-click="balanceCtrl.showCurrentBalance()">Current</button>
+
+			</div>
 			<li>{{"account balance: " + balanceCtrl.balance.balance}}</li>
 			<li>{{"gross income (without vat): " + balanceCtrl.balance.grossIncome}}</li>
 			<li>{{"net balance: " + balanceCtrl.balance.netBalance}}</li>
@@ -14,7 +23,7 @@
 			<li>{{"vat due: " + balanceCtrl.balance.vatDue}}</li>
 			<li>{{"vat paid: " + balanceCtrl.balance.vatPaid}}</li>
 			<li>{{"vat remaining (due minus paid): " + balanceCtrl.balance.vatBalance}}</li>
-			<hr>
+			<br><br><hr>
 			<h3>Depending on the type of activity (tax settlement method):</h3>
 			<h4>Option 1 (for taxes settled on the flat tax basis):</h4>
 			<li>{{"flat tax due: " + balanceCtrl.balance.flatTaxDue}}</li>
@@ -30,7 +39,8 @@
 			<hr>	
 			<li>{{"profit paid: " + balanceCtrl.balance.profitPaid}}</li>
 			<li>{{"tax paid: " + balanceCtrl.balance.taxPaid}}</li>				
-		</ul>	
+		</ul>
+
 	</div>
 
 	<h2>Latest transfers</h2>
@@ -44,12 +54,8 @@
 				<li>{{"transfer amount: " + transfer.amount}}</li>
 				<li>{{"from: " + transfer.from_}}</li>
 				<li>{{"to: " + transfer.to_}}</li>
-			</ul>
-			
-		
-		</div>
-	
-	
+			</ul>		
+		</div>	
 	</div>
 	<p  ng-controller="MainController as mainCtrl">{{mainCtrl.menuClick('main')}}</p>
 </div>

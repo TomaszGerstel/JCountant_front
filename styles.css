@@ -110,9 +110,10 @@ nav {
 }
 
 .login_info {
-    background-color: rgba(95, 191, 177, 1);
+    /* background-color: rgba(95, 191, 177, 1); */
     font-size: 0.9rem;
     padding: 2px;
+    padding-right: 10px;
     float: right;
     
     justify-content: right;
@@ -127,6 +128,15 @@ nav {
 
  header {
     background-color: rgba(95, 191, 177, 1);  
+}
+
+.balance_buttons {
+    position: relative;
+    float: right;
+    right: 5%;
+    top: -10px;
+    width: 17%;
+    font-size: 1rem;
 }
 
 
@@ -221,7 +231,7 @@ nav {
     border-radius: 0.5rem;
     margin: 3px;
     padding: 3px;
-    
+    position: static;
 }
 
 .block > ul {
