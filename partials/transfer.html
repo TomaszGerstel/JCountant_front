@@ -8,7 +8,7 @@
 			<div class="transfer_form">
 			<div class="radio_block">
 
-			<h4>Choose type of transaction (with receipt): </h4>
+			<h4>Choose type of transaction<br>(with receipt): </h4>
 			<div>
 			<input class="standard_transfer_radio" type="radio" name="transfer_type" value="IN_TRANSFER" id="in"
 				   required ng-model="transferCtrl.transfer.transferType">
@@ -18,7 +18,7 @@
 				   id="out" ng-model="transferCtrl.transfer.transferType">
 			<label for="out" class="radio">Out transfer</label></br>
 
-			<h4>Or make special transaction (without receipt):</h4>
+			<h4>Or make special transaction<br>(without receipt):</h4>
 			<input class="special_transfer_radio" type="radio" name="transfer_type" value="SALARY" id="salary" ng-model="transferCtrl.transfer.transferType">
 			<label for="salary" class="radio">Salary (out transfer)</label>
 			<span> - remaining profit is (flat / lump): </span>{{balance.profit_remaining_flat}} / {{balance.profit_remaining_lump}}</br>
@@ -41,17 +41,21 @@
 				<input type="number" ng-model="transferCtrl.transfer.amount"
 				required="required" placeholder="amount"><br>				
 				<input type="text" ng-model="transferCtrl.transfer.from_" placeholder="from"><br>
-				<input type="textr" ng-model="transferCtrl.transfer.to_" placeholder="to"><br>
+				<input type="text" ng-model="transferCtrl.transfer.to_" placeholder="to"><br>
 				<input type="text" ng-model="transferCtrl.transfer.description"	placeholder="description"><br>
 			</div>
 			</div>
-				<div class="transfer_form">
+				<div class="info_blocks">
 					<h3>Choose a receipt (you cannot make a standard transfer before defining the receipt),
 						the following invoices are the only ones not used in any transaction: </h3>
-				<div ng-repeat="receipt in transferCtrl.receiptsWithoutTransfer">
-				<label class="radio" >
-					<input type="radio" ng-model="transferCtrl.receiptId" value={{receipt.id}} >{{"amount: "+receipt.amount 
-					+" client: "+ receipt.client}}</label><br>
+				<div ng-repeat="receipt in transferCtrl.receiptsWithoutTransfer" class="block small_block">
+				<label class="radio_list" >
+					<input type="radio" class="radio" ng-model="transferCtrl.receiptId" value={{receipt.id}} >				
+					<li>{{"amount: "+receipt.amount}}</li>
+					<li>{{"date: "+receipt.date}}</li>
+					<li>{{"client: "+ receipt.client}}</li>
+					<li>{{"worker: "+receipt.worker}}</li>
+					<li>{{"description: "+receipt.description}}</li></input></label><br>
 				</div>
 				</div>
 			<button type="submit" class="my_button" ng-click="transferCtrl.addTransfer()">Add</button>

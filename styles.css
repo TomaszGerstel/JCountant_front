@@ -41,7 +41,7 @@ nav {
     flex-wrap: wrap;
     margin: 0 auto;
     padding: 0;
-    background-color: rgba(5, 168, 170, 1);  
+    background-color: #05a8aa;  
     align-items: center;
 }
 
@@ -87,7 +87,7 @@ nav {
 }
 
 .top_bar > a {
-    flex: 0.19 1 0;
+    flex: 0.21 1 0;
     color: antiquewhite;
 }
 
@@ -100,6 +100,22 @@ nav {
     flex: 1 1 0;
     /* width: 20%; */
     color: antiquewhite;
+}
+
+.logo {
+    width: 80%;
+   
+    /* object-fit: contain; */
+    margin: 0;
+
+}
+
+.logo_image {
+    
+    width: 25%;
+    /* height: 80%; */
+    float: left;   
+   
 }
 
 .selected {
@@ -133,9 +149,9 @@ nav {
 .balance_buttons {
     position: relative;
     float: right;
-    right: 5%;
-    top: -10px;
-    width: 17%;
+    right: 7%;
+    top: -5px;
+    width: 19%;
     font-size: 1rem;
 }
 
@@ -187,9 +203,44 @@ nav {
     text-align: center;
 }
 
-.my_radio {
-    display: flex;
+
+
+
+
+
+.radio_label {
+	color: rgba(75,85,99);
+	cursor: pointer;
+	margin-left: .5em;
+	display: inline;
+    vertical-align: bottom;
 }
+
+input[type="radio"] {
+    accent-color: rgba(6, 95, 70);
+    width: 1em;
+	height: 1em;
+	position: relative;
+}
+
+input[type="radio"]:checked + .radio_label {
+    font-weight: 500;
+	color: black;
+    font-size: 1.1rem;
+    vertical-align: bottom;
+}
+
+input[type="radio"]:checked {
+    width: 1.1em;
+	height: 1.1em;
+}
+
+
+
+
+/* .my_radio {
+    display: flex;
+} */
 
 .transfer_inputs {
     width: 48%;
@@ -231,17 +282,35 @@ nav {
     border-radius: 0.5rem;
     margin: 3px;
     padding: 3px;
-    position: static;
+    position: static;   
 }
 
-.block > ul {
+.small_block {
+    margin: 6px;
+    background-color: rgba(250, 235, 215, 0.7);
+    transition-duration: .5s;
+    --tw-scale-x: 1;
+    --tw-scale-y: 1;
+    transform: scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
+    cursor: pointer;
+}
+
+.small_block:hover {
+    background-color: rgba(250, 235, 215, 0.9);
+    transition-duration: .5s;
+    --tw-scale-x: 1.05;
+    --tw-scale-y: 1.05;
+    transform: scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y)); 
+}
+
+.block > ul, .radio_list > li  {
     list-style: none;
     padding-left: 3px;
 }
 
 .form_block {
 	display: inline-grid;
-	    flex-direction: column;
+	flex-direction: column;
     align-self: flex-start;
     width: 40%;
 }

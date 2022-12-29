@@ -1,0 +1,39 @@
+<meta charset="UTF-8">
+</meta>
+
+<div class="content">
+	
+
+	<h2>Transfer details</h2>
+
+	<div class="info_blocks">
+	
+		<div class="block">
+			<ul>
+				<h4>Transfer: </h4>
+				<li>{{"id: " + transferCtrl.transfer.id}}</li>
+				<li>{{"type: " + transferCtrl.transfer.transferType}}</li>
+				<li>{{"amount: " + transferCtrl.transfer.amount}}</li>
+				<li>{{"date: " + transferCtrl.transfer.date}}</li>
+				<li>{{"base date (saved): " + transferCtrl.transfer.baseDate}}</li>				
+				<li>{{"from: " + transferCtrl.transfer.from}}</li>
+				<li>{{"to: " + transferCtrl.transfer.to}}</li>
+				<li>{{"description: " + transferCtrl.transfer.description}}</li>
+
+				<div ng-show="transferCtrl.transfer.receipt">
+					<h4>With receipt: </h4>
+				<li>{{"id: " + transferCtrl.transfer.receipt.id}}</li>
+				<li>{{"date: " + transferCtrl.transfer.receipt.date}}</li>
+				<li>{{"net amount: " + transferCtrl.transfer.receipt.amount}}</li>
+				<li>{{"net amount: " + transferCtrl.transfer.receipt.netAmount}}</li>
+				<li>{{"vat value: " + transferCtrl.transfer.receipt.vatValue}}</li>
+				<li>{{"vat percentage (if given): " + transferCtrl.transfer.receipt.vatPercentage}}</li>
+				<li>{{"client: " + transferCtrl.transfer.receipt.client}}</li>
+				<li>{{"worker: " + transferCtrl.transfer.receipt.worker}}</li>
+				<li>{{"description: " + transferCtrl.transfer.receipt.description}}</li>
+				</div>
+			</ul>		
+		</div>	
+	</div>
+	<p  ng-controller="MainController as mainCtrl">{{mainCtrl.menuClick('')}}</p>
+</div>

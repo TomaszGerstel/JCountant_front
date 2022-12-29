@@ -53,13 +53,16 @@ angular.module('app')
 				function error(reason) {
 					console.log('deleting receipt error' + reason);
 				});
+		}
+		vm.getReceiptDetails = function(id) {
+			return Receipt.get({ id: id });
 		}	
 	})	
-	.service('TransferService', function(TransfersLatest, Transfer) {
+	.service('TransferService', function(TransfersLatest, Transfer, TransfersSearch) {
 		var vm = this;
 		vm.transfer = new Transfer();
-		vm.getLatestTransfers = function() {
-			return TransfersLatest.query({ },
+		vm.getLatestTransfers = function(limit) {
+			return TransfersLatest.query({ resultSize: limit },
 				function success(data) {
 					console.log('Data downloaded: ' + JSON.stringify(data));
 				},
@@ -77,8 +80,20 @@ angular.module('app')
 		function error(reason) {
 			console.log('adding transfer error: ' + reason);
 		})
-
-	}; 
+		}
+		vm.getTransferDetails = function(id) {
+			return Transfer.get({ id: id });
+		}
+		vm.searchTransfers = function(key) {	
+			return TransfersSearch.query({ key: key }, 
+				function success(data) {
+					console.log("key: "+key);
+					console.log('Data downloaded: ' + JSON.stringify(data));
+				},
+				function error(reponse) {
+					console.log(reponse.status);
+				})
+	}
 
 	})
 	.service('BalanceService', function(Balance, CurrentMonthBalance, LastMonthBalance, BalanceForDateRange) {
