@@ -2,11 +2,7 @@
 <html data-ng-app="app">
 <head>
 <meta charset="UTF-8"></meta>
-<<<<<<< HEAD
-<title>JCountant</title>
-=======
 <title>J-Countant</title>
->>>>>>> a9e92293d6c51bbfc317934553551d6a7681bead
 <link rel="stylesheet" href="styles.css">
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
@@ -19,24 +15,24 @@
 	<!-- <header ng-controller="LoginController as loginCtrl"> -->
 	<header ng-controller="MainController as mainCtrl">
         <nav>
-          <ul class="bar top_bar">
-			<!-- <li class="logo"><a href="#!/:window.location.reload(true)">
-            	<img class="logo_image" src="images/MyLawasz.jpg"/></a></li>             -->
-        	<a href="#!receipt" ng-click="mainCtrl.menuClick('info')" id="info">Info</a>
+          <div class="bar top_bar">
+			<span class="logo"><a href="#!/:window.location.reload(true)">
+            	<img class="logo_image" src="images/J-Countant.jpg"/></a></span>            
+        	
            <a href="#!login" ng-show="!authenticated" ng-click="mainCtrl.menuClick('login')" id="login">LOGIN</a>				
 					<a href="#!login" ng-show="authenticated" ng-click="loginCtrl.logout()" ng-controller="LoginController as loginCtrl">LOGOUT</a>
-          </ul>
+			</div>
         </nav>
 
         <nav>
-          <ul class="bar menu_bar">
+          <div class="bar menu_bar">
 			<a href="#!main" ng-click="mainCtrl.menuClick('main')" id="main">Home</a>
 			<a href="#!receipt" ng-click="mainCtrl.menuClick('receipt')" id="receipt">New Receipt</a>
             <a href="#!transfer" ng-click="mainCtrl.menuClick('transfer')" id="transfer">New Transfer</a>    
-            <a href="#!receipt" ng-click="mainCtrl.menuClick('balance')" id="balance">Balance</a>
-            <a href="#!/" ng-click="mainCtrl.menuClick('search')" id="search">Search...</a>
+            <a href="#!receipt" ng-click="mainCtrl.menuClick('info')" id="info">Info</a>
+            <a href="#!search" ng-click="mainCtrl.menuClick('search')" id="search">Search...</a>
            
-          </ul>		  
+		  </div>		  
         </nav>
 		<span ng-show="authenticated" class="login_info">Logged in user: {{currentUserName}}</span>
       </header>

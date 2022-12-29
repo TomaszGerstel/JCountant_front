@@ -11,8 +11,14 @@
 		<div class="block">
 			<ul>
 				<li>{{"id: " + receiptCtrl.receipt.id}}</li>
+				<li>{{"date: " + receiptCtrl.receipt.date}}</li>
 				<li>{{"amount: " + receiptCtrl.receipt.amount}}</li>
-				<li>{{"net value: " + receiptCtrl.receipt.net_value}}</li>
+				<li>{{"net amount: " + receiptCtrl.receipt.netAmount}}</li>
+				<li>{{"vat value: " + receiptCtrl.receipt.vatValue}}</li>
+				<li>{{"vat percentage (if given): " + receiptCtrl.receipt.vatPercentage}}</li>
+				<li>{{"client: " + receiptCtrl.receipt.client}}</li>
+				<li>{{"worker: " + receiptCtrl.receipt.worker}}</li>
+				<li>{{"description: " + receiptCtrl.receipt.description}}</li>
 				<li>{{}}</li>
 				<li>{{}}</li>
 			</ul>		

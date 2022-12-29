@@ -6,13 +6,17 @@
 		<h2 ng-model="balanceCtrl.balanceInfo">{{balanceCtrl.balanceInfo}}</h2>
 		<ul>
 			<div class="balance_buttons">
-				<button class="my_button" ng-click="balanceCtrl.showBalanceForCurrentMonth()">For current month</button>
-				<button class="my_button" ng-click="balanceCtrl.showBalanceForLastMonth()">For last month</button>
+				<input type="radio" name="balance_range" ng-click="balanceCtrl.showCurrentBalance()" id="current" checked>
+				<label for="current" class="radio_label">Current</label><br>
+				<input type="radio" name="balance_range" ng-click="balanceCtrl.showBalanceForCurrentMonth()" id="current_month">
+				<label for="current_month" class="radio_label">For current month</label><br>
+				<input type="radio" name="balance_range" ng-click="balanceCtrl.showBalanceForLastMonth()" id="last_month">
+				<label for="last_month" class="radio_label">For last month</label>
 				<hr>
-				from: <input type="date" ng-model="balanceCtrl.fromDate" name="from"><br>
-				to: <input type="date" ng-model="balanceCtrl.toDate" name="to">
-				<button class="my_button" ng-click="balanceCtrl.showBalanceForDateRange()">For date range</button><hr>
-				<button class="my_button" ng-click="balanceCtrl.showCurrentBalance()">Current</button>
+				<input type="radio" name="balance_range" ng-click="balanceCtrl.showBalanceForDateRange()" id="date_range">
+				<label for="date_range" class="radio_label"></label>For date range</label><br>
+				from: <br><input type="date" ng-model="balanceCtrl.fromDate" name="from" required><br>
+				to: <br><input type="date" ng-model="balanceCtrl.toDate" name="to" required>								
 
 			</div>
 			<li>{{"account balance: " + balanceCtrl.balance.balance}}</li>
@@ -47,13 +51,14 @@
 
 	<div class="info_blocks" ng-controller="TransferController as transferCtrl">
 	
-		<div class="block" ng-repeat="transfer in transferCtrl.latestTransfers">
+		<div class="block small_block" ng-repeat="transfer in transferCtrl.latestTransfers" 
+		ng-click="transferCtrl.goToTransferDetails(transfer.id)" title="click to see details">
 			<ul>
 				<li>{{"transfer type: " + transfer.transferType}}</li>
 				<li>{{"transfer date: " + transfer.date}}</li>
 				<li>{{"transfer amount: " + transfer.amount}}</li>
-				<li>{{"from: " + transfer.from_}}</li>
-				<li>{{"to: " + transfer.to_}}</li>
+				<li>{{"from: " + transfer.from}}</li>
+				<li>{{"to: " + transfer.to}}</li>
 			</ul>		
 		</div>	
 	</div>

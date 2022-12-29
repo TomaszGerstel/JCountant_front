@@ -18,29 +18,37 @@ angular.module('app')
 		var vm = this;
 		vm.receipt = new Receipt();
 		vm.operationInfo = "";
-		vm.newReceiptLink = "";
+		vm.newReceiptLink = "receipt_details/";
 		vm.latestReceipts = ReceiptService.getLatestReceipts();
+
+		vm.goToReceiptDetails = function(id) {
+			$location.path(vm.receiptDetailsLink+id);
+		}
 		vm.addReceipt = function() {
 			// if (cause.description == null) return;
 			ReceiptService.addReceipt(vm.receipt,
 				vm.success = function(id) {					
 					vm.receipt = new Receipt();
 					vm.operationInfo = "Receipt added.";
-					vm.newReceiptLink = "#!receipt_details/"+id;
+					vm.newReceiptLink += id;
 				});
 		}		
 	})
-	.controller('ReceiptDetailsController', function($routeParams, Receipt) {
+	.controller('ReceiptDetailsController', function($routeParams, ReceiptService) {
 		var vm = this;
-		vm.receipt = new Receipt();
 		vm.receiptId = $routeParams.id;
-		vm.receipt = Receipt.get({id: vm.receiptId});
+		vm.receipt = ReceiptService.getReceiptDetails(vm.receiptId);
 	})
-	.controller('TransferController', function(TransferService, Transfer, ReceiptService) {
+	.controller('TransferController', function(TransferService, Transfer, ReceiptService, $location) {
 		var vm = this;
 		vm.transfer = new Transfer();
 		vm.receiptId = null;
+		vm.transferDetailsLink = "transfer_details/";
 		vm.latestTransfers = TransferService.getLatestTransfers();
+
+		vm.goToTransferDetails = function(id) {
+			$location.path(vm.transferDetailsLink+id);
+		}
 		vm.receiptsWithoutTransfer = ReceiptService.getReceiptsWithoutTransfer();
 		vm.addTransfer = function() {
 			TransferService.addTransfer(vm.transfer, vm.receiptId,
@@ -48,6 +56,25 @@ angular.module('app')
 					vm.transfer = new Transfer();
 				});
 			} 
+	})
+	.controller('TransferDetailsController', function($routeParams, TransferService) {
+		var vm = this;	
+		vm.transferId = $routeParams.id;
+		vm.transfer = TransferService.getTransferDetails(vm.transferId);
+	})
+	.controller('SearchController', function(ReceiptService, TransferService) {
+		var vm = this;
+		vm.transfers = [];
+		vm.key = '';
+		vm.limit = 10;
+		vm.searchTransfersByClient = function() {
+			// vm.transfers = [];
+			vm.transfers = TransferService.searchTransfers(vm.key);
+		}
+		vm.latestTransfersWithLimit = function() {
+			vm.transfers = TransferService.getLatestTransfers(vm.limit);
+		}
+		
 	})
 	.controller('BalanceController', function(BalanceService) {
 		var vm = this;
@@ -83,12 +110,8 @@ angular.module('app')
 			if (vm.day.length < 2) vm.day = '0' + vm.day;
 		
 			return [vm.year, vm.month, vm.day].join('-');
-		}
-	
-			
+		}			
 	})
-
-
 	.controller('RegisterController', function(AuthenticationService, User) {
 		var vm = this;
 		vm.user = new User();

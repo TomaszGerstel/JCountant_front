@@ -25,6 +25,16 @@ angular.module('app', ['ngRoute', 'ngResource', 'ngCookies'])
 			controller: 'TransferController',
 			controllerAs: 'transferCtrl'
 			})
+			.when('/transfer_details/:id', {
+				templateUrl: 'partials/transfer_details.html',
+				controller: 'TransferDetailsController',
+				controllerAs: 'transferCtrl'
+			})
+			.when('/search', {
+				templateUrl: 'partials/search.html',
+				controller: 'SearchController',
+				controllerAs: 'searchCtrl'
+				})
 			.when('/register', {
 				templateUrl: 'partials/register.html',
 				controller: 'RegisterController',
@@ -63,6 +73,9 @@ angular.module('app', ['ngRoute', 'ngResource', 'ngCookies'])
 	})
 	.factory('TransfersLatest', function($resource) {
 		return $resource(API_ADDRESS+'/api/transfer/recent');
+	})
+	.factory('TransfersSearch', function($resource) {
+		return $resource(API_ADDRESS+'/api/transfer/search');
 	})
 	.factory('Transfer', function($resource) {
 		return $resource(API_ADDRESS+'/api/transfer/:id');
