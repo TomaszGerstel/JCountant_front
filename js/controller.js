@@ -43,19 +43,34 @@ angular.module('app')
 		var vm = this;
 		vm.transfer = new Transfer();
 		vm.receiptId = null;
-		vm.transferDetailsLink = "transfer_details/";
+		vm.operationInfo = ""
+		vm.transferDetailsLink = "";
 		vm.latestTransfers = TransferService.getLatestTransfers();
-
+		vm.receiptsWithoutTransfer = ReceiptService.getReceiptsWithoutTransfer();
+		vm.showReceipts = true;
+		
+		vm.showReceiptsBlock = function() {
+			vm.showReceipts = true;
+		}
+		vm.hideReceiptsBlock = function() {
+			vm.showReceipts = false;
+		}
 		vm.goToTransferDetails = function(id) {
 			$location.path(vm.transferDetailsLink+id);
-		}
-		vm.receiptsWithoutTransfer = ReceiptService.getReceiptsWithoutTransfer();
+		}		
 		vm.addTransfer = function() {
 			TransferService.addTransfer(vm.transfer, vm.receiptId,
-				vm.success = function() {
+				vm.success = function(id) {
 					vm.transfer = new Transfer();
+					vm.addingTransferInfo = "Transfer added.";
+					vm.transferDetailsLink = "transfer_details/"+id;
+				},
+				vm.error = function(reason) {
+					vm.transferDetailsLink = "";
+					vm.operationInfo = reason;
 				});
-			} 
+		}
+	
 	})
 	.controller('TransferDetailsController', function($routeParams, TransferService) {
 		var vm = this;	

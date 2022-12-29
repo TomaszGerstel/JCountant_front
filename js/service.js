@@ -80,15 +80,17 @@ angular.module('app')
 					console.log(reponse.status);
 				});
 		}
-		vm.addTransfer = function(transfer, receiptId, successCallback) {
+		vm.addTransfer = function(transfer, receiptId, successCallback, errorCallback) {
 			vm.transfer = transfer;
 			vm.transfer.$save({receiptId: receiptId}, function(data) {
 				console.log('New transfer added: ' + JSON.stringify(data));
-				successCallback();
+				successCallback(data.id);
 				vm.transfer = new Transfer();
 		},
 		function error(reason) {
-			console.log('adding transfer error: ' + reason);
+			console.log('adding transfer error');
+			errorCallback(reason.data.errors[0].field +": "
+				+reason.data.errors[0].defaultMessage);
 		})
 		}
 		vm.getTransferDetails = function(id) {
