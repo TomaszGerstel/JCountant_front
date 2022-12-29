@@ -9,30 +9,25 @@
 			<div class="radio_block">
 
 			<h4>Choose type of transaction<br>(with receipt): </h4>
-			<div>
-			<input class="standard_transfer_radio" type="radio" name="transfer_type" value="IN_TRANSFER" id="in"
-				   required ng-model="transferCtrl.transfer.transferType">
-			<label for="in" class="radio">In transfer</label>
-		</div>
-			<input class="standard_transfer_radio" type="radio" name="transfer_type" value="OUT_TRANSFER"
-				   id="out" ng-model="transferCtrl.transfer.transferType">
-			<label for="out" class="radio">Out transfer</label></br>
+			
+			<label for="in" class="radio"><input class="standard_transfer_radio" type="radio"
+			 name="transfer_type" value="IN_TRANSFER" id="in" required ng-model="transferCtrl.transfer.transferType">In transfer</label><br>
+				
+			<label for="out" class="radio"><input class="standard_transfer_radio" type="radio" name="transfer_type" value="OUT_TRANSFER"
+				   id="out" ng-model="transferCtrl.transfer.transferType">Out transfer</label></br>
 
 			<h4>Or make special transaction<br>(without receipt):</h4>
-			<input class="special_transfer_radio" type="radio" name="transfer_type" value="SALARY" id="salary" ng-model="transferCtrl.transfer.transferType">
-			<label for="salary" class="radio">Salary (out transfer)</label>
-			<span> - remaining profit is (flat / lump): </span>{{balance.profit_remaining_flat}} / {{balance.profit_remaining_lump}}</br>
-			<input class="special_transfer_radio" type="radio" name="transfer_type" value="VAT_OUT_TRANSFER"
-				   id="vat" required ng-model="transferCtrl.transfer.transferType">
-			<label for="vat" class="radio">Vat out transfer (to the treasury)</label>
-			<span> - current vat balance is: </span>{{balance.vat_balance}}</br>
-			<div class="my_radio">
-			<input class="special_transfer_radio" type="radio" name="transfer_type" value="TAX_OUT_TRANSFER"
-				   id="tax" ng-model="transferCtrl.transfer.transferType">
-			<label for="tax" class="radio">Tax out transfer (to tax office)
-				- current tax balance is (flat / lump): {{balance.flat_tax_balance}} / {{balance.lump_sum_tax_balance}}
-			</label>
-		</div>			
+			<label for="salary" class="radio"><input class="special_transfer_radio" type="radio"
+				 name="transfer_type" value="SALARY" id="salary" ng-model="transferCtrl.transfer.transferType">Salary (out transfer)</label><br>		
+			
+			
+			<label for="vat" class="radio"><input class="special_transfer_radio" type="radio" name="transfer_type" value="VAT_OUT_TRANSFER"
+				   id="vat" required ng-model="transferCtrl.transfer.transferType">Vat out transfer (to the treasury)</label><br>		
+			
+			<label for="tax" class="radio"><input class="special_transfer_radio" type="radio" 
+				name="transfer_type" value="TAX_OUT_TRANSFER" id="tax" ng-model="transferCtrl.transfer.transferType">
+				Tax out transfer (to tax office)</label>
+				
 			</br>
 		</div>
 		<div class="transfer_inputs">

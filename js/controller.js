@@ -14,11 +14,11 @@ angular.module('app')
 		}
 	})
 	
-	.controller('ReceiptController', function(ReceiptService, Receipt) {
+	.controller('ReceiptController', function(ReceiptService, Receipt, $location) {
 		var vm = this;
 		vm.receipt = new Receipt();
 		vm.operationInfo = "";
-		vm.newReceiptLink = "receipt_details/";
+		vm.receiptDetailsLink = "receipt_details/";
 		vm.latestReceipts = ReceiptService.getLatestReceipts();
 
 		vm.goToReceiptDetails = function(id) {
@@ -30,7 +30,7 @@ angular.module('app')
 				vm.success = function(id) {					
 					vm.receipt = new Receipt();
 					vm.operationInfo = "Receipt added.";
-					vm.newReceiptLink += id;
+					vm.receiptDetailsLink += id;
 				});
 		}		
 	})
@@ -65,14 +65,29 @@ angular.module('app')
 	.controller('SearchController', function(ReceiptService, TransferService) {
 		var vm = this;
 		vm.transfers = [];
+		vm.receipts = [];
 		vm.key = '';
 		vm.limit = 10;
+
 		vm.searchTransfersByClient = function() {
-			// vm.transfers = [];
+			vm.clearSearchResults();
 			vm.transfers = TransferService.searchTransfers(vm.key);
 		}
+		vm.searchReceiptsByClient = function() {
+			vm.clearSearchResults();
+			vm.receipts = ReceiptService.searchReceipts(vm.key);
+		}
 		vm.latestTransfersWithLimit = function() {
+			vm.clearSearchResults();
 			vm.transfers = TransferService.getLatestTransfers(vm.limit);
+		}
+		vm.latestReceiptsWithLimit = function() {
+			vm.clearSearchResults();
+			vm.receipts = ReceiptService.getLatestReceipts(vm.limit);
+		}
+		vm.clearSearchResults = function() {
+			vm.transfers = [];
+			vm.receipts = [];
 		}
 		
 	})

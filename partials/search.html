@@ -20,6 +20,22 @@
 				<button class="my_button" ng-click="searchCtrl.latestTransfersWithLimit()">Display</button>					
 			</form>					
 		</div>
+		<div class="my_form">
+			<form class="form_inputs">
+				<label>Search receipts with client name</label>
+				<input type="text" ng-model="searchCtrl.key"					
+					placeholder="key"><br> 
+				<button class="my_button" ng-click="searchCtrl.searchReceiptsByClient()">Search</button>					
+			</form>					
+		</div>
+		<div class="my_form">
+			<form class="form_inputs">
+				<label>Latest receipts with result limit</label>
+				<input type="number" ng-model="searchCtrl.limit"					
+					placeholder="result limit"><br> 
+				<button class="my_button" ng-click="searchCtrl.latestReceiptsWithLimit()">Display</button>					
+			</form>					
+		</div>
 		
 
 		<div class="info_blocks" ng-controller="TransferController as transferCtrl">
@@ -38,11 +54,11 @@
 			<div class="block small_block" ng-repeat="receipt in searchCtrl.receipts" 
 			ng-click="receiptCtrl.goToReceiptDetails(receipt.id)" title="click to see details">
 				<ul>
-					<li>{{"transfer type: " + transfer.transferType}}</li>
-					<li>{{"transfer date: " + transfer.date}}</li>
-					<li>{{"transfer amount: " + transfer.amount}}</li>
-					<li>{{"from: " + transfer.from}}</li>
-					<li>{{"to: " + transfer.to}}</li>
+					<li>{{"receipt amount: " + receipt.amount}}</li>
+					<li>{{"date: " + receipt.date}}</li>
+					<li>{{"client: " + receipt.client}}</li>
+					<li>{{"worker: " + recipt.worker}}</li>
+					
 				</ul>		
 			</div>	
 		</div>

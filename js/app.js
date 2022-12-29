@@ -77,6 +77,9 @@ angular.module('app', ['ngRoute', 'ngResource', 'ngCookies'])
 	.factory('TransfersSearch', function($resource) {
 		return $resource(API_ADDRESS+'/api/transfer/search');
 	})
+	.factory('ReceiptsSearch', function($resource) {
+		return $resource(API_ADDRESS+'/api/receipt/search');
+	})
 	.factory('Transfer', function($resource) {
 		return $resource(API_ADDRESS+'/api/transfer/:id');
 	})

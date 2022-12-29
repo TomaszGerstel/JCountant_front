@@ -1,11 +1,12 @@
 'use strict';
 
 angular.module('app')
-	.service('ReceiptService', function(ReceiptsLatest, Receipt, ReceiptsWithoutTransfer, $location, $rootScope) {
+	.service('ReceiptService', function(ReceiptsLatest, Receipt, ReceiptsWithoutTransfer,
+		 $location, $rootScope, ReceiptsSearch) {
 		var vm = this;
 		vm.receipt = new Receipt();		
-		vm.getLatestReceipts = function() {
-			return ReceiptsLatest.query({ },
+		vm.getLatestReceipts = function(limit) {
+			return ReceiptsLatest.query({ resultSize: limit },
 				function success(data) {
 					console.log('Pobrano dane: ' + JSON.stringify(data));		
 				},
@@ -43,6 +44,15 @@ angular.module('app')
 				function error(response) {
 					console.log(response.status);
 				});
+		}
+		vm.searchReceipts = function(key) {	
+			return ReceiptsSearch.query({ key: key }, 
+				function success(data) {
+					console.log('Data downloaded: ' + JSON.stringify(data));
+				},
+				function error(reponse) {
+					console.log(reponse.status);
+				})
 		}
 		vm.deleteReceipt = function(id, successCallback) {
 			vm.receipt.$delete({ receiptId: id })
@@ -87,13 +97,12 @@ angular.module('app')
 		vm.searchTransfers = function(key) {	
 			return TransfersSearch.query({ key: key }, 
 				function success(data) {
-					console.log("key: "+key);
 					console.log('Data downloaded: ' + JSON.stringify(data));
 				},
 				function error(reponse) {
 					console.log(reponse.status);
 				})
-	}
+		}
 
 	})
 	.service('BalanceService', function(Balance, CurrentMonthBalance, LastMonthBalance, BalanceForDateRange) {
