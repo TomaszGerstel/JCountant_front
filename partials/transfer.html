@@ -1,7 +1,9 @@
 <meta charset="UTF-8"></meta>
 <div class="content">
 	<h2>Add new Transfer</h2>
-	<h3 ng-show="transferCtrl.operationInfo">{{transferCtrl.operationInfo}}<a href="{{'#!'+transferCtrl.transferDetailsLink}}"> Go to transfer</a>
+	<h3 ng-show="transferCtrl.operationInfo">{{transferCtrl.operationInfo}}
+		<a href="{{'#!'+transferCtrl.transferDetailsLink}}" 
+			ng-show="transferCtrl.transferDetailsLink">Go to transfer</a>
 	<h3 ng-show="!authenticated">Log in to add transfer</h3>
 	<div class="" ng-show="authenticated">
 		<form class="form_inputs">

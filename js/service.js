@@ -82,15 +82,18 @@ angular.module('app')
 		}
 		vm.addTransfer = function(transfer, receiptId, successCallback, errorCallback) {
 			vm.transfer = transfer;
+			vm.errorInfo = "";
 			vm.transfer.$save({receiptId: receiptId}, function(data) {
+				vm.errorInfo = "";
 				console.log('New transfer added: ' + JSON.stringify(data));
 				successCallback(data.id);
 				vm.transfer = new Transfer();
-		},
-		function error(reason) {
-			console.log('adding transfer error');
-			errorCallback(reason.data.errors[0].field +": "
-				+reason.data.errors[0].defaultMessage);
+				},
+				function error(reason) {
+					console.log('adding transfer error: '+ JSON.stringify(reason));
+					if(reason.data) vm.errorInfo = reason.data.toString();
+					else vm.errorInfo = "adding transfer error";
+					errorCallback(vm.errorInfo);
 		})
 		}
 		vm.getTransferDetails = function(id) {

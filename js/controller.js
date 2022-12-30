@@ -60,10 +60,10 @@ angular.module('app')
 		}		
 		vm.addTransfer = function() {
 			TransferService.addTransfer(vm.transfer, vm.receiptId,
-				vm.success = function(id) {
-					vm.transfer = new Transfer();
-					vm.addingTransferInfo = "Transfer added.";
+				vm.success = function(id) {					
+					vm.operationInfo = "Transfer added.";
 					vm.transferDetailsLink = "transfer_details/"+id;
+					vm.transfer = new Transfer();
 				},
 				vm.error = function(reason) {
 					vm.transferDetailsLink = "";
