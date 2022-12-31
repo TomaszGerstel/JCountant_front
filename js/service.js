@@ -153,7 +153,7 @@ angular.module('app')
 			var config = { headers: authHeader };
 			$http
 				// .post('api/login', {}, config)
-				.post('http://127.0.0.1:8080/login', {}, config)
+				.post(API_ADDRESS+'/login', {}, config)
 				.then(function success(value) {		
 					$http.defaults.headers.common["Authorization"] = authHeader.Authorization;		
 					$rootScope.currentUserName = credentials.username;

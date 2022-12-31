@@ -1,6 +1,7 @@
 'use strict';
 
-const API_ADDRESS = 'http://127.0.0.1:8080';
+// const API_ADDRESS = 'http://127.0.0.1:8080';
+const API_ADDRESS = 'http://192.109.244.132:8080';
 
 angular.module('app', ['ngRoute', 'ngResource', 'ngCookies'])
 	.config(function($routeProvider) {

@@ -13,10 +13,12 @@
 				<input type="radio" name="balance_range" ng-click="balanceCtrl.showBalanceForLastMonth()" id="last_month">
 				<label for="last_month" class="radio_label">For last month</label>
 				<hr>
-				<input type="radio" name="balance_range" ng-click="balanceCtrl.showBalanceForDateRange()" id="date_range">
+				<input type="radio" name="balance_range" ng-click="balanceCtrl.showBalanceForDateRange()" id="date_range"
+					ng-disabled="!balanceCtrl.fromDate || !balanceCtrl.toDate">
 				<label for="date_range" class="radio_label">For date range</label><br>
-				from: <br><input type="date" ng-model="balanceCtrl.fromDate" name="from" required><br>
-				to: <br><input type="date" ng-model="balanceCtrl.toDate" name="to" required>								
+				<span>{{balanceCtrl.dateRangeInfo}}</span><br>
+				from: <br><input type="date" ng-model="balanceCtrl.fromDate" name="from" required ><br>
+				to: <br><input type="date" ng-model="balanceCtrl.toDate" name="to" required >								
 
 			</div>
 			<li>{{"account balance: " + balanceCtrl.balance.balance}}</li>

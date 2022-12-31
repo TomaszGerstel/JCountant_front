@@ -56,7 +56,7 @@ angular.module('app')
 			vm.showReceipts = false;
 		}
 		vm.goToTransferDetails = function(id) {
-			$location.path(vm.transferDetailsLink+id);
+			$location.path("transfer_details/"+id);
 		}		
 		vm.addTransfer = function() {
 			TransferService.addTransfer(vm.transfer, vm.receiptId,
@@ -108,12 +108,13 @@ angular.module('app')
 	})
 	.controller('BalanceController', function(BalanceService) {
 		var vm = this;
-		vm.balanceInfo = "Current balance (for all time)";
-		vm.fromDate;
-		vm.toDate;
+		vm.balanceInfo = "Current balance (for all time)";	
+		vm.fromDate = null;
+		vm.toDate = null;
 		vm.balance = BalanceService.getCurrentBalance();
 		vm.currentBalance = vm.balance;
-		vm.showCurrentBalance = function () {
+
+		vm.showCurrentBalance = function () {			
 			vm.balance = BalanceService.getCurrentBalance();
 			vm.balanceInfo = "Current balance (for all time)";
 		}
@@ -125,7 +126,7 @@ angular.module('app')
 			vm.balance = BalanceService.getBalanceForLastMonth();
 			vm.balanceInfo = "Balance for last month";
 		}
-		vm.showBalanceForDateRange = function() {
+		vm.showBalanceForDateRange = function() {			
 			vm.fromDateForm = vm.formatDate(vm.fromDate);
 			vm.toDateForm = vm.formatDate(vm.toDate);
 			vm.balance = BalanceService.getBalanceForDateRange(vm.fromDateForm, vm.toDateForm);
