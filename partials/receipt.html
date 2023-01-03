@@ -1,7 +1,8 @@
 <meta charset="UTF-8"></meta>
 <div class="content">
 	<h2>Add new Receipt / Invoice</h2>
-	<h3 ng-show="receiptCtrl.operationInfo">{{receiptCtrl.operationInfo}}<a href="{{'#!'+receiptCtrl.receiptDetailsLink}}"> Go to receipt</a>
+	<h3 ng-show="receiptCtrl.operationInfo">{{receiptCtrl.operationInfo}}
+		<a href="{{'#!'+receiptCtrl.receiptDetailsLink}}" ng-show="receiptCtrl.receiptDetailsLink"> Go to receipt</a>
 	</h3>
 	<h3 ng-show="!authenticated">Log in to add receipt</h3>
 	<div class="my_form" ng-show="authenticated">

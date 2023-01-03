@@ -18,7 +18,7 @@ angular.module('app')
 		var vm = this;
 		vm.receipt = new Receipt();
 		vm.operationInfo = "";
-		vm.receiptDetailsLink = "receipt_details/";
+		vm.receiptDetailsLink = "";
 		vm.latestReceipts = ReceiptService.getLatestReceipts();
 
 		vm.goToReceiptDetails = function(id) {
@@ -30,7 +30,10 @@ angular.module('app')
 				vm.success = function(id) {					
 					vm.receipt = new Receipt();
 					vm.operationInfo = "Receipt added.";
-					vm.receiptDetailsLink += id;
+					vm.receiptDetailsLink = "receipt_details/"+id;
+				},vm.error = function(reason) {
+					vm.receiptDetailsLink = "";
+					vm.operationInfo = reason;
 				});
 		}		
 	})

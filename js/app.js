@@ -53,9 +53,9 @@ angular.module('app', ['ngRoute', 'ngResource', 'ngCookies'])
 			})
 			.when('/info', {
 				templateUrl: 'partials/info.html',
-				controller: 'InfoController',
-				controllerAs: 'infoCtrl'
-			})
+				controller: '',
+				controllerAs: ''
+			})		
 			.otherwise({
 				redirectTo: '/'
 			});

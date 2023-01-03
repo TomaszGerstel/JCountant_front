@@ -23,17 +23,21 @@ angular.module('app')
 					console.log(response.status);
 				});
 		}
-		vm.addReceipt = function(receipt, successCallback) {
-			vm.receipt = receipt;			
-			vm.receipt.$save(function(data, headers) {
+		vm.addReceipt = function(receipt, successCallback, errorCallback) {
+			vm.receipt = receipt;
+			vm.errorInfo = "";			
+			vm.receipt.$save(function(data) {
+				vm.errorInfo = "";
 				console.log('New receipt added: ' + JSON.stringify(data));
 				successCallback(data.id);
 				vm.receipt = new Receipt();
 				
-				// $location.path(headers('Location'));
 			},
 			function error(reason) {
-				console.log('adding receipt error: ' + reason);
+				console.log('adding receipt error: '+ JSON.stringify(reason));
+					if(reason.data) vm.errorInfo = reason.data.toString();
+					else vm.errorInfo = "adding receipt error";
+					errorCallback(vm.errorInfo);
 			})
 		}; 
 		vm.getReceiptsWithoutTransfer = function() {
