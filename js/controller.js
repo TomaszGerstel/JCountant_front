@@ -22,7 +22,7 @@ angular.module('app')
 		vm.latestReceipts = ReceiptService.getLatestReceipts();
 
 		vm.goToReceiptDetails = function(id) {
-			$location.path(vm.receiptDetailsLink+id);
+			$location.path("receipt_details/"+id);
 		}
 		vm.addReceipt = function() {
 			// if (cause.description == null) return;
@@ -75,10 +75,28 @@ angular.module('app')
 		}
 	
 	})
-	.controller('TransferDetailsController', function($routeParams, TransferService) {
+	.controller('TransferDetailsController', function($routeParams, TransferService, $timeout) {
 		var vm = this;	
 		vm.transferId = $routeParams.id;
+		vm.info = "";
+		vm.showConfirmButton = false;
+		vm.showDeleteButton = true;
+		vm.confirmDeleting = function() {
+			vm.showConfirmButton = true;
+			vm.showDeleteButton = false;
+			$timeout(vm.toggleButtons, 3000);
+		}
+		vm.toggleButtons = function() {
+			vm.showConfirmButton = false;
+			vm.showDeleteButton = true;
+		}
 		vm.transfer = TransferService.getTransferDetails(vm.transferId);
+		vm.deleteTransfer = function() {
+			TransferService.deleteTransfer(vm.transferId, 
+				vm.success = function() {
+					vm.info = "transfer deleted";
+				})
+		}
 	})
 	.controller('SearchController', function(ReceiptService, TransferService) {
 		var vm = this;

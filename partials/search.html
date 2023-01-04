@@ -2,9 +2,10 @@
 	
 	<div class="content">
 		<h2>search transfer or receipt</h2>
-		<h3 ng-show="loginCtrl.showErrMessage">Nieprawidłowe dane
-			logowania! Spróbuj ponownie</h3>
-		<div class="my_form">
+
+		<div class="search_forms">
+		<div>
+		<div class="search_form">
 			<form class="form_inputs">
 				<label>Search transfers with client name</label>
 				<input type="text" ng-model="searchCtrl.key"					
@@ -12,7 +13,7 @@
 				<button class="my_button" ng-click="searchCtrl.searchTransfersByClient()">Search</button>					
 			</form>					
 		</div>
-		<div class="my_form">
+		<div class="search_form">
 			<form class="form_inputs">
 				<label>Latest transfers with result limit</label>
 				<input type="number" ng-model="searchCtrl.limit"					
@@ -20,7 +21,9 @@
 				<button class="my_button" ng-click="searchCtrl.latestTransfersWithLimit()">Display</button>					
 			</form>					
 		</div>
-		<div class="my_form">
+	</div>
+	<div>
+		<div class="search_form">
 			<form class="form_inputs">
 				<label>Search receipts with client name</label>
 				<input type="text" ng-model="searchCtrl.key"					
@@ -28,7 +31,7 @@
 				<button class="my_button" ng-click="searchCtrl.searchReceiptsByClient()">Search</button>					
 			</form>					
 		</div>
-		<div class="my_form">
+		<div class="search_form">
 			<form class="form_inputs">
 				<label>Latest receipts with result limit</label>
 				<input type="number" ng-model="searchCtrl.limit"					
@@ -36,8 +39,9 @@
 				<button class="my_button" ng-click="searchCtrl.latestReceiptsWithLimit()">Display</button>					
 			</form>					
 		</div>
-		
-
+	</div>
+	</div>
+	
 		<div class="info_blocks" ng-controller="TransferController as transferCtrl">
 			<div class="block small_block" ng-repeat="transfer in searchCtrl.transfers" 
 			ng-click="transferCtrl.goToTransferDetails(transfer.id)" title="click to see details">

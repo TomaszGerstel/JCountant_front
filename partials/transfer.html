@@ -12,22 +12,26 @@
 
 			<h4>Choose type of transaction<br>(with receipt): </h4>
 			
-			<label for="in" class="radio"><input ng-click="transferCtrl.showReceiptsBlock()" type="radio"
-			 name="transfer_type" value="IN_TRANSFER" id="in" required ng-model="transferCtrl.transfer.transferType">In transfer</label><br>
-				
-			<label for="out" class="radio"><input ng-click="transferCtrl.showReceiptsBlock()" type="radio" name="transfer_type" value="OUT_TRANSFER"
-				   id="out" ng-model="transferCtrl.transfer.transferType">Out transfer</label></br>
+			<input ng-click="transferCtrl.showReceiptsBlock()" type="radio"
+			 name="transfer_type" value="IN_TRANSFER" id="in" required ng-model="transferCtrl.transfer.transferType">
+			<label for="in" class="radio_label">In transfer</label><br>
+			
+			<input ng-click="transferCtrl.showReceiptsBlock()" type="radio" name="transfer_type" value="OUT_TRANSFER"
+				   id="out" ng-model="transferCtrl.transfer.transferType">
+			<label for="out" class="radio_label">Out transfer</label></br>
 
 			<h4>Or make special transaction<br>(without receipt):</h4>
-			<label for="salary" class="radio"><input type="radio" name="transfer_type" ng-click="transferCtrl.hideReceiptsBlock()"
-				value="SALARY" id="salary" ng-model="transferCtrl.transfer.transferType">Salary (out transfer)</label><br>		
+			<input type="radio" name="transfer_type" ng-click="transferCtrl.hideReceiptsBlock()"
+				value="SALARY" id="salary" ng-model="transferCtrl.transfer.transferType">
+			<label for="salary" class="radio_label">Salary (out transfer)</label><br>		
 			
+			<input ng-click="transferCtrl.hideReceiptsBlock()" type="radio" name="transfer_type" value="VAT_OUT_TRANSFER"
+				   id="vat" required ng-model="transferCtrl.transfer.transferType">
+			<label for="vat" class="radio_label">Vat out transfer (to the treasury)</label><br>		
 			
-			<label for="vat" class="radio"><input ng-click="transferCtrl.hideReceiptsBlock()" type="radio" name="transfer_type" value="VAT_OUT_TRANSFER"
-				   id="vat" required ng-model="transferCtrl.transfer.transferType">Vat out transfer (to the treasury)</label><br>		
-			
-			<label for="tax" class="radio"><input ng-click="transferCtrl.hideReceiptsBlock()" type="radio" 
+			<input ng-click="transferCtrl.hideReceiptsBlock()" type="radio" 
 				name="transfer_type" value="TAX_OUT_TRANSFER" id="tax" ng-model="transferCtrl.transfer.transferType">
+			<label for="tax" class="radio_label">
 				Tax out transfer (to tax office)</label>
 				
 			</br>

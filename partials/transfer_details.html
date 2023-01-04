@@ -32,6 +32,8 @@
 				<li>{{"worker: " + transferCtrl.transfer.receipt.worker}}</li>
 				<li>{{"description: " + transferCtrl.transfer.receipt.description}}</li>
 				</div>
+				<button ng-show="transferCtrl.showDeleteButton" ng-click="transferCtrl.confirmDeleting()">Delete transfer</button>
+				<button ng-show="transferCtrl.showConfirmButton" ng-click="transferCtrl.deleteTransfer()">Confirm deleting</button>
 			</ul>		
 		</div>	
 	</div>
