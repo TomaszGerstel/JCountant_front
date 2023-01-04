@@ -5,10 +5,10 @@
 	
 
 	<h2>Receipt details</h2>
-
+	<h3>{{receiptCtrl.info}}</h3>	
 	<div class="info_blocks">
-	
-		<div class="block">
+		<span ng-show="!receiptCtrl.receipt.id">No receipt or no access</span>
+		<div class="block" ng-show="receiptCtrl.receipt.id">
 			<ul>
 				<li>{{"id: " + receiptCtrl.receipt.id}}</li>
 				<li>{{"date: " + receiptCtrl.receipt.date}}</li>
@@ -21,8 +21,12 @@
 				<li>{{"description: " + receiptCtrl.receipt.description}}</li>
 				<li>{{}}</li>
 				<li>{{}}</li>
-			</ul>		
+			</ul>
+			<button class="my_button delete_button" ng-show="receiptCtrl.showDeleteButton" ng-click="receiptCtrl.confirmDeleting()">Delete receipt</button>
+		<button class="my_button delete_button" ng-show="receiptCtrl.showConfirmButton" ng-click="receiptCtrl.deleteReceipt()">Really delete? Click to confirm deleting</button>
+				
 		</div>	
 	</div>
+
 	<p  ng-controller="MainController as mainCtrl">{{mainCtrl.menuClick('')}}</p>
 </div>

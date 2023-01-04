@@ -13,7 +13,8 @@ body {
 
 main {
     margin: auto;
-    max-width: 800px;
+    max-width: 900px;
+    min-width: 500px;
     border-color: antiquewhite;
     color:black;
     border-style: solid;
@@ -21,7 +22,10 @@ main {
     border-radius: 0.4rem;   
     display: block;
     font-size: 1.5rem;
-    margin-bottom: 2rem;  
+    margin-bottom: 2rem;
+    word-wrap: break-word;
+    text-size-adjust: 120%;
+
 }
 
 h1, h2, h3 {
@@ -133,6 +137,7 @@ nav {
     background-color: rgba(250, 235, 215, 0.7);
     border-radius: 0.5rem;
     margin: 3px;
+    margin-top: 8px;
     padding: 3px;
 }
 
@@ -170,12 +175,12 @@ nav {
 }
 
 /* balance radios */
-.balance_buttons { 
+.balance_buttons {    
     position: absolute;
     float: right;
     right: 7%;
     top: -5px;
-    width: 23%;
+    width: 23%;  
     font-size: 1rem;
 }
 
@@ -199,9 +204,15 @@ nav {
     background-color: antiquewhite;
 }
 
-.transfer_form, .search_forms {
+.transfer_form, .search_forms, .transfer_details_info {
     display: flex;
     justify-content: space-between;
+    flex-basis: 1;
+}
+
+.transfer_details_column {
+    padding: 3px;
+    min-width: 50%;    
 }
 
 .radio_block {
@@ -248,23 +259,32 @@ input[type="radio"]:checked {
     float: right;
 }
 
-
-
-
-.my_button {
+.my_button {    
 	padding: 5px;
     margin-top: 5px;
-	/* text-decoration: none; */
-	background-color: black;
+    max-width: 450px;
+	background-color: black;    
 	border: none;
 	color: white;
 	cursor: pointer;  	
-	width: 100%;
+	width: 99%;    
 	font-size: 1.1rem;
     border-radius: 0.5rem;
     border-width: 0;
     transition-duration: 1s;
     opacity: 0.7;
+}
+
+.delete_button {
+    float: right;
+    max-width: 150px;
+    margin: 10px;
+}
+
+.add_transfer_button_div {    
+    max-width: 350px;
+    margin: auto;
+    justify-self: center;
 }
 
 .my_button:hover {	

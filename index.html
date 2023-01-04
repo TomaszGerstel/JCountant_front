@@ -8,6 +8,8 @@
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
 <link rel="icon" type="image/png" ng-href="images/favicon.png" />
 <link rel="shortcut icon" type="image/png" ng-href="images/favicon.png" />
+<link rel="stylesheet" 
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
 </head>
 
 <body>
@@ -19,19 +21,18 @@
 			<span class="logo"><a href="#!/:window.location.reload(true)">
             	<img class="logo_image" src="images/J-Countant.jpg"/></a></span>            
         	
-           <a href="#!login" ng-show="!authenticated" ng-click="mainCtrl.menuClick('login')" id="login">LOGIN</a>				
-					<a href="#!login" ng-show="authenticated" ng-click="loginCtrl.logout()" ng-controller="LoginController as loginCtrl">LOGOUT</a>
+           <a href="#!login" ng-show="!authenticated" ng-click="mainCtrl.menuClick('login')" id="login"><i class="fa-solid fa-right-to-bracket"></i> LOGIN</a>				
+					<a href="#!login" ng-show="authenticated" ng-click="loginCtrl.logout()" ng-controller="LoginController as loginCtrl"><i class="fa-solid fa-power-off"></i> LOGOUT</a>
 			</div>
         </nav>
 
         <nav>
           <div class="bar menu_bar">
-			<a href="#!main" ng-click="mainCtrl.menuClick('main')" id="main">Home</a>
-			<a href="#!receipt" ng-click="mainCtrl.menuClick('receipt')" id="receipt">New Receipt</a>
-            <a href="#!transfer" ng-click="mainCtrl.menuClick('transfer')" id="transfer">New Transfer</a>    
-            <a href="#!info" ng-click="mainCtrl.menuClick('info')" id="info">Info</a>
-            <a href="#!search" ng-click="mainCtrl.menuClick('search')" id="search">Search...</a>
-           
+			<a href="#!main" ng-click="mainCtrl.menuClick('main')" id="main"><i class="fa-solid fa-chart-simple"></i> Home</a>
+			<a href="#!receipt" ng-click="mainCtrl.menuClick('receipt')" id="receipt"><i class="fa-solid fa-file-invoice-dollar"></i> New Receipt</a>
+            <a href="#!transfer" ng-click="mainCtrl.menuClick('transfer')" id="transfer"><i class="fa-solid fa-money-bill-transfer"></i> New Transfer</a>    
+            <a href="#!search" ng-click="mainCtrl.menuClick('search')" id="search"><i class="fa-solid fa-magnifying-glass"></i> Search...</a>
+			<a href="#!info" ng-click="mainCtrl.menuClick('info')" id="info"><i class="fa-solid fa-circle-info"></i> Info</a>        
 		  </div>		  
         </nav>
 		<span ng-show="authenticated" class="login_info">Logged in user: {{currentUserName}}</span>

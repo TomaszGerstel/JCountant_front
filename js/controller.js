@@ -21,11 +21,12 @@ angular.module('app')
 		vm.receiptDetailsLink = "";
 		vm.latestReceipts = ReceiptService.getLatestReceipts();
 
+
 		vm.goToReceiptDetails = function(id) {
 			$location.path("receipt_details/"+id);
 		}
 		vm.addReceipt = function() {
-			// if (cause.description == null) return;
+		
 			ReceiptService.addReceipt(vm.receipt,
 				vm.success = function(id) {					
 					vm.receipt = new Receipt();
@@ -37,10 +38,33 @@ angular.module('app')
 				});
 		}		
 	})
-	.controller('ReceiptDetailsController', function($routeParams, ReceiptService) {
+	.controller('ReceiptDetailsController', function($routeParams, ReceiptService, $timeout) {
 		var vm = this;
 		vm.receiptId = $routeParams.id;
+		vm.info = "";
 		vm.receipt = ReceiptService.getReceiptDetails(vm.receiptId);
+		vm.showConfirmButton = false;
+		vm.showDeleteButton = true;
+		vm.confirmDeleting = function() {
+			vm.showConfirmButton = true;
+			vm.showDeleteButton = false;
+			$timeout(vm.toggleButtons, 3000);
+		}
+		vm.toggleButtons = function() {
+			vm.showConfirmButton = false;
+			vm.showDeleteButton = true;
+		}
+		vm.deleteReceipt = function() {
+			ReceiptService.deleteReceipt(vm.receiptId, 
+				vm.success = function() {
+					vm.info = "receipt deleted";
+					vm.receipt = null;
+				}),
+				vm.error = function() {
+					vm.info = "operation error";
+				}
+		}
+
 	})
 	.controller('TransferController', function(TransferService, Transfer, ReceiptService, $location) {
 		var vm = this;
@@ -95,7 +119,11 @@ angular.module('app')
 			TransferService.deleteTransfer(vm.transferId, 
 				vm.success = function() {
 					vm.info = "transfer deleted";
-				})
+					vm.transfer = null;
+				}),
+				vm.error = function() {
+					vm.info = "operation error";
+				}
 		}
 	})
 	.controller('SearchController', function(ReceiptService, TransferService) {

@@ -59,7 +59,8 @@
 					<li>{{"description: "+receipt.description}}</li></input></label><br>
 				</div>
 				</div>
-			<button type="submit" class="my_button" ng-click="transferCtrl.addTransfer()">Add</button>
+			<div class="add_transfer_button_div"><button type="submit" class="my_button" ng-click="transferCtrl.addTransfer()">Add</button>
+			</div>
 		</form>
 	</div>
 	<p  ng-controller="MainController as mainCtrl">{{mainCtrl.menuClick('transfer')}}</p>

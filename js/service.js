@@ -59,7 +59,7 @@ angular.module('app')
 				})
 		}
 		vm.deleteReceipt = function(id, successCallback) {
-			vm.receipt.$delete({ receiptId: id })
+			vm.receipt.$delete({ id: id })
 			.then(function success() {
 				console.log('Receipt deleted');
 				successCallback();
@@ -111,6 +111,16 @@ angular.module('app')
 				function error(reponse) {
 					console.log(reponse.status);
 				})
+		}
+		vm.deleteTransfer = function(id, successCallback, errorCallback) {
+			vm.transfer.$delete({ id: id })
+			.then(function success() {
+				console.log('Transfer deleted');
+				successCallback();
+			},
+				function error(reason) {
+					console.log('deleting transfer error' + JSON.stringify(reason));
+				});
 		}
 
 	})

@@ -5,11 +5,12 @@
 	
 
 	<h2>Transfer details</h2>
-
+	<h3>{{transferCtrl.info}}</h3>	
 	<div class="info_blocks">
-	
-		<div class="block">
-			<ul>
+		<span ng-show="!transferCtrl.transfer.id">No transfer or no access</span>
+		<div class="block" ng-show="transferCtrl.transfer.id">
+			<ul class="transfer_details_info">
+				<div class="transfer_details_column">
 				<h4>Transfer: </h4>
 				<li>{{"id: " + transferCtrl.transfer.id}}</li>
 				<li>{{"type: " + transferCtrl.transfer.transferType}}</li>
@@ -19,8 +20,8 @@
 				<li>{{"from: " + transferCtrl.transfer.from}}</li>
 				<li>{{"to: " + transferCtrl.transfer.to}}</li>
 				<li>{{"description: " + transferCtrl.transfer.description}}</li>
-
-				<div ng-show="transferCtrl.transfer.receipt">
+			</div>
+				<div ng-show="transferCtrl.transfer.receipt" class="transfer_details_column">
 					<h4>With receipt: </h4>
 				<li>{{"id: " + transferCtrl.transfer.receipt.id}}</li>
 				<li>{{"date: " + transferCtrl.transfer.receipt.date}}</li>
@@ -32,9 +33,10 @@
 				<li>{{"worker: " + transferCtrl.transfer.receipt.worker}}</li>
 				<li>{{"description: " + transferCtrl.transfer.receipt.description}}</li>
 				</div>
-				<button ng-show="transferCtrl.showDeleteButton" ng-click="transferCtrl.confirmDeleting()">Delete transfer</button>
-				<button ng-show="transferCtrl.showConfirmButton" ng-click="transferCtrl.deleteTransfer()">Confirm deleting</button>
-			</ul>		
+		</ul>	
+		<button class="my_button delete_button" ng-show="transferCtrl.showDeleteButton" ng-click="transferCtrl.confirmDeleting()">Delete transfer</button>
+		<button class="my_button delete_button" ng-show="transferCtrl.showConfirmButton" ng-click="transferCtrl.deleteTransfer()">Really delete? Click to confirm deleting</button>
+		
 		</div>	
 	</div>
 	<p  ng-controller="MainController as mainCtrl">{{mainCtrl.menuClick('')}}</p>
