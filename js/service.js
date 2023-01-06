@@ -58,14 +58,15 @@ angular.module('app')
 					console.log(reponse.status);
 				})
 		}
-		vm.deleteReceipt = function(id, successCallback) {
+		vm.deleteReceipt = function(id, successCallback, errorCallback) {
 			vm.receipt.$delete({ id: id })
 			.then(function success() {
 				console.log('Receipt deleted');
 				successCallback();
 			},
 				function error(reason) {
-					console.log('deleting receipt error' + reason);
+					console.log('deleting receipt error' + JSON.stringify(reason));
+					errorCallback();
 				});
 		}
 		vm.getReceiptDetails = function(id) {

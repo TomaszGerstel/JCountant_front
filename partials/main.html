@@ -20,8 +20,8 @@
 				<label for="date_range" class="radio_label">For date range</label><br>
 				<span>{{balanceCtrl.dateRangeInfo}}</span><br>
 				
-				from: <br><input type="date" ng-model="balanceCtrl.fromDate" name="from" required ><br>
-				to: <br><input type="date" ng-model="balanceCtrl.toDate" name="to" required >								
+				from: <br><input type="date" class="my_date_input" ng-model="balanceCtrl.fromDate" name="from" required ><br>
+				to: <br><input type="date" class="my_date_input" ng-model="balanceCtrl.toDate" name="to" required >								
 
 			</div>
 			<li>{{"account balance: " + balanceCtrl.balance.balance}}</li>

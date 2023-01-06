@@ -59,10 +59,11 @@ angular.module('app')
 				vm.success = function() {
 					vm.info = "receipt deleted";
 					vm.receipt = null;
-				}),
+				},
 				vm.error = function() {
 					vm.info = "operation error";
-				}
+				});
+				
 		}
 
 	})
@@ -120,10 +121,10 @@ angular.module('app')
 				vm.success = function() {
 					vm.info = "transfer deleted";
 					vm.transfer = null;
-				}),
+				},
 				vm.error = function() {
 					vm.info = "operation error";
-				}
+				});
 		}
 	})
 	.controller('SearchController', function(ReceiptService, TransferService) {

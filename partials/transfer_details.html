@@ -16,7 +16,7 @@
 				<li>{{"type: " + transferCtrl.transfer.transferType}}</li>
 				<li>{{"amount: " + transferCtrl.transfer.amount}}</li>
 				<li>{{"date: " + transferCtrl.transfer.date}}</li>
-				<li>{{"base date (saved): " + transferCtrl.transfer.baseDate}}</li>				
+				<li>base date (saved): <span ng-bind="transferCtrl.transfer.baseDate | date:'yyyy-MM-dd HH:mm:ss'"></span></li>				
 				<li>{{"from: " + transferCtrl.transfer.from}}</li>
 				<li>{{"to: " + transferCtrl.transfer.to}}</li>
 				<li>{{"description: " + transferCtrl.transfer.description}}</li>
