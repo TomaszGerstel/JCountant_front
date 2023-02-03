@@ -2,8 +2,7 @@
 	
 	<div class="content">
 		<h2>Log in or register</h2>
-		<h3 ng-show="loginCtrl.showErrMessage">Nieprawidłowe dane
-			logowania! Spróbuj ponownie</h3>
+		<h3 ng-show="loginCtrl.showErrMessage">Invalid login details! Try again</h3>
 		<div class="my_form" ng-show="!authenticated">
 			<form class="form_inputs">
 				<input type="text" ng-model="loginCtrl.credentials.username"

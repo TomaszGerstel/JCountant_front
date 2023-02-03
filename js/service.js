@@ -191,7 +191,7 @@ angular.module('app')
 		vm.register = function(user, registerCallback) {
 			console.log(user._proto_);
 			user.$save(function() {
-				vm.registerMessage = 'Rejestracja się powiodła! Możesz się zalogować.'
+				vm.registerMessage = 'Registration successful! You can log in..'
 				registerCallback();
 			},
 				function error(response) {
@@ -201,7 +201,7 @@ angular.module('app')
 						console.log(response.data);
 					}
 					else {
-						vm.registerMessage = 'Rejestracja nieudana!';
+						vm.registerMessage = 'Registration failed!';
 					}
 					registerCallback();
 				}

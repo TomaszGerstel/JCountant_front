@@ -95,13 +95,12 @@ angular.module('app', ['ngRoute', 'ngResource', 'ngCookies'])
 	})
 	.factory('BalanceForDateRange', function($resource) {
 		return $resource(API_ADDRESS+'/api/balance/to_date_range')
-	})
+	})	
 	.config(function($httpProvider) {
 		$httpProvider.defaults.headers.common["X-Requested-With"] = 'XMLHttpRequest';
-	})	
+	})
 	.run(['$rootScope', '$cookies', '$http',
     function ($rootScope, $cookies, $http) { 
-		// $rootScope.API_ADDRESS = 'http://127.0.0.1:8080';
 		if ($cookies.get('globals')) {
             $http.defaults.headers.common['Authorization'] = $cookies.get('globals');
 			$rootScope.currentUserName = $cookies.get('currentUserName');
