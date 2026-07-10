@@ -1,7 +1,5 @@
 'use strict';
 
-// const API_ADDRESS = 'http://127.0.0.1:8080';
-const API_ADDRESS = 'http://192.109.244.132:8080';
 
 angular.module('app', ['ngRoute', 'ngResource', 'ngCookies'])
 	.config(function($routeProvider) {
@@ -60,40 +58,40 @@ angular.module('app', ['ngRoute', 'ngResource', 'ngCookies'])
 				redirectTo: '/'
 			});
 	})
-	.factory('User', function($resource) {
+	.factory('User', function($resource, API_ADDRESS) {
 		return $resource(API_ADDRESS+'/api/register');
 	})
-	.factory('ReceiptsLatest', function($resource) {
+	.factory('ReceiptsLatest', function($resource, API_ADDRESS) {
 		return $resource(API_ADDRESS+'/api/receipt/recent');
 	})
-	.factory('ReceiptsWithoutTransfer', function($resource) {
+	.factory('ReceiptsWithoutTransfer', function($resource, API_ADDRESS) {
 		return $resource(API_ADDRESS+'/api/receipt/no_transfer_receipts');
 	})
-	.factory('Receipt', function($resource) {
+	.factory('Receipt', function($resource, API_ADDRESS) {
 		return $resource(API_ADDRESS+'/api/receipt/:id');
 	})
-	.factory('TransfersLatest', function($resource) {
+	.factory('TransfersLatest', function($resource, API_ADDRESS) {
 		return $resource(API_ADDRESS+'/api/transfer/recent');
 	})
-	.factory('TransfersSearch', function($resource) {
+	.factory('TransfersSearch', function($resource, API_ADDRESS) {
 		return $resource(API_ADDRESS+'/api/transfer/search');
 	})
-	.factory('ReceiptsSearch', function($resource) {
+	.factory('ReceiptsSearch', function($resource, API_ADDRESS) {
 		return $resource(API_ADDRESS+'/api/receipt/search');
 	})
-	.factory('Transfer', function($resource) {
+	.factory('Transfer', function($resource, API_ADDRESS) {
 		return $resource(API_ADDRESS+'/api/transfer/:id');
 	})
-	.factory('Balance', function($resource) {
+	.factory('Balance', function($resource, API_ADDRESS) {
 		return $resource(API_ADDRESS+'/api/balance/current');
 	})
-	.factory('CurrentMonthBalance', function($resource) {
+	.factory('CurrentMonthBalance', function($resource, API_ADDRESS) {
 		return $resource(API_ADDRESS+'/api/balance/to_current_month')
 	})
-	.factory('LastMonthBalance', function($resource) {
+	.factory('LastMonthBalance', function($resource, API_ADDRESS) {
 		return $resource(API_ADDRESS+'/api/balance/to_last_month')
 	})
-	.factory('BalanceForDateRange', function($resource) {
+	.factory('BalanceForDateRange', function($resource, API_ADDRESS) {
 		return $resource(API_ADDRESS+'/api/balance/to_date_range')
 	})	
 	.config(function($httpProvider) {

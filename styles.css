@@ -271,6 +271,7 @@ input[type="radio"]:checked {
 .my_button {    
 	padding: 5px;
     margin-top: 5px;
+    min-width: fit-content;
     max-width: 450px;
 	background-color: black;    
 	border: none;
@@ -292,6 +293,7 @@ input[type="radio"]:checked {
 
 .add_transfer_button_div {    
     max-width: 350px;
+    width: 100%;
     margin: auto;
     justify-self: center;
 }

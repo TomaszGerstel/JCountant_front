@@ -28,11 +28,12 @@ angular.module('app')
 		vm.addReceipt = function() {
 		
 			ReceiptService.addReceipt(vm.receipt,
-				vm.success = function(id) {					
+				function(id) {					
 					vm.receipt = new Receipt();
 					vm.operationInfo = "Receipt added.";
 					vm.receiptDetailsLink = "receipt_details/"+id;
-				},vm.error = function(reason) {
+				},
+				function(reason) {
 					vm.receiptDetailsLink = "";
 					vm.operationInfo = reason;
 				});
@@ -56,11 +57,11 @@ angular.module('app')
 		}
 		vm.deleteReceipt = function() {
 			ReceiptService.deleteReceipt(vm.receiptId, 
-				vm.success = function() {
+				function() {
 					vm.info = "receipt deleted";
 					vm.receipt = null;
 				},
-				vm.error = function() {
+				function() {
 					vm.info = "operation error";
 				});
 				
@@ -88,12 +89,12 @@ angular.module('app')
 		}		
 		vm.addTransfer = function() {
 			TransferService.addTransfer(vm.transfer, vm.receiptId,
-				vm.success = function(id) {					
+				function(id) {					
 					vm.operationInfo = "Transfer added.";
 					vm.transferDetailsLink = "transfer_details/"+id;
 					vm.transfer = new Transfer();
 				},
-				vm.error = function(reason) {
+				function(reason) {
 					vm.transferDetailsLink = "";
 					vm.operationInfo = reason;
 				});
@@ -118,11 +119,11 @@ angular.module('app')
 		vm.transfer = TransferService.getTransferDetails(vm.transferId);
 		vm.deleteTransfer = function() {
 			TransferService.deleteTransfer(vm.transferId, 
-				vm.success = function() {
+				function() {
 					vm.info = "transfer deleted";
 					vm.transfer = null;
 				},
-				vm.error = function() {
+				function() {
 					vm.info = "operation error";
 				});
 		}
@@ -183,14 +184,14 @@ angular.module('app')
 			vm.balanceInfo = "Balance for date range from: "+vm.fromDateForm+" to: "+vm.toDateForm;
 		}
 		vm.formatDate = function (date) {
-			vm.month = (date.getMonth() + 1).toString();
-			vm.day = date.getDate().toString();
-			vm.year = date.getFullYear().toString();
+			var month = (date.getMonth() + 1).toString();
+			var day = date.getDate().toString();
+			var year = date.getFullYear().toString();
 		
-			if (vm.month.length < 2) vm.month = '0' + vm.month;
-			if (vm.day.length < 2) vm.day = '0' + vm.day;
+			if (month.length < 2) month = '0' + month;
+			if (day.length < 2) day = '0' + day;
 		
-			return [vm.year, vm.month, vm.day].join('-');
+			return [year, month, day].join('-');
 		}			
 	})
 	.controller('RegisterController', function(AuthenticationService, User) {
